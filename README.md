@@ -2,13 +2,13 @@
 # [YOUR NAME HERE]
 
 ## Spin up instructions
-./create.sh network network.yml network.json
-./create.sh udagram udagarm.yml udagram.json
+1) ./create.sh network network.yml network.json
+2) ./create.sh udagram udagarm.yml udagram.json
 
 
 ## Tear down instructions
-./delete.sh network
-./delete.sh udagram
+1) ./delete.sh network
+2) ./delete.sh udagram
 
 ## Other considerations
 TODO (optional)

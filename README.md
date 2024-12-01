@@ -1,5 +1,5 @@
 # CD12352 - Infrastructure as Code Project Solution
-# [YOUR NAME HERE]
+# [MINAL]
 
 ## Spin up instructions
 1) ./create.sh network network.yml network.json

@@ -3,7 +3,7 @@
 
 ## Spin up instructions
 1) ./create.sh network network.yml network.json
-2) ./create.sh udagram udagarm.yml udagram.json
+2) ./create.sh udagram udagram.yml udagram.json
 
 
 ## Tear down instructions

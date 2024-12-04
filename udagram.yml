@@ -190,10 +190,5 @@ Resources:
       VpcId: 
         Fn::ImportValue:
           Fn::Sub: "${EnvironmentName}-VPCID"
-  # Outputs:
-  #   LoadBalancerURL:
-  #     Description: The public URL of the Load Balancer
-  #     Value: !Sub "http://${WebAppLB.DNSName}"
-  #     Export:
-  #       Name: !Sub "${EnvironmentName}-LoadBalancerURL"
+
 

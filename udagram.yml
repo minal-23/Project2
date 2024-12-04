@@ -64,6 +64,23 @@ Resources:
             apt-get update -y
             sudo apt-get install nginx -y
             service nginx start
+            WEB_DIR="/var/www/html"
+            cat <<EOF > index.html
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>It works ! Udagram,Udacity</title>
+              </head>
+              <body>
+                  <h1>It works ! Udagram,Udacity</h1>
+                  <p>This is hosted on Nginx.</p>
+              </body>
+            </html>
+            EOF
+            sudo rm -r $WEB_DIR/index.*
+            sudo cp index.html $WEB_DIR
+            sudo systemctl reload nginx
+
   #AUTOSCALE GROUP
   AutoScalingGroup:
     Type: AWS::AutoScaling::AutoScalingGroup
@@ -83,7 +100,7 @@ Resources:
   S3Bucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Sub "${EnvironmentName}-Udagram-newversion"
+      BucketName: !Sub "minal-udagram-newversion"
       AccessControl: Private
       VersioningConfiguration:
         Status: Enabled
@@ -135,6 +152,7 @@ Resources:
       - Fn::ImportValue: !Sub "${EnvironmentName}-PUB2-SN"
       SecurityGroups:
       - Ref: SecurityGroup
+      #LISTENER
   Listener:
     Type: AWS::ElasticLoadBalancingV2::Listener
     Properties:
@@ -146,6 +164,7 @@ Resources:
         Ref: WebAppLB
       Port: '80'
       Protocol: HTTP
+      #LISTENER RULE
   ALBListenerRule:
       Type: AWS::ElasticLoadBalancingV2::ListenerRule
       Properties:
@@ -171,10 +190,10 @@ Resources:
       VpcId: 
         Fn::ImportValue:
           Fn::Sub: "${EnvironmentName}-VPCID"
-  Outputs:
-  LoadBalancerURL:
-    Description: The public URL of the Load Balancer
-    Value: !Sub "http://${WebAppLB.DNSName}"
-    Export:
-      Name: !Sub "${EnvironmentName}-LoadBalancerURL"
+  # Outputs:
+  #   LoadBalancerURL:
+  #     Description: The public URL of the Load Balancer
+  #     Value: !Sub "http://${WebAppLB.DNSName}"
+  #     Export:
+  #       Name: !Sub "${EnvironmentName}-LoadBalancerURL"
 
